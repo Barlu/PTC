@@ -7,21 +7,26 @@
  */
 
 /**
- * Description of Admin
+ * Description of LogIn
  *
  * @author emmett.newman
  */
-class Admin {
+class LogIn {
     private $id;
-    private $schoolId;
+    private $username;
+    private $password;
     private $userId;
     
     public function getId() {
         return $this->id;
     }
 
-    public function getSchoolId() {
-        return $this->schoolId;
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getPassword() {
+        return $this->password;
     }
 
     public function getUserId() {
@@ -32,8 +37,12 @@ class Admin {
         $this->id = (int) $id;
     }
 
-    public function setSchoolId($schoolId) {
-        $this->schoolId = $schoolId;
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
+    public function setPassword($password) {
+        $this->password = $password;
     }
 
     public function setUserId($userId) {

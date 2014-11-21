@@ -19,7 +19,7 @@ class Upload {
     private $dateTime;
     private $filePath;
     private $status;
-    private $comment = null;
+    private $comment;
     
     public function getId() {
         return $this->id;

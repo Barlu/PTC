@@ -12,5 +12,51 @@
  * @author emmett.newman
  */
 class Teacher {
-    //put your code here
+    private $id;
+    private $name;
+    private $schoolId;
+    private $userId;
+    private $classroomId;
+    
+    public function getClassroomId() {
+        return $this->classroomId;
+    }
+
+    public function setClassroomId($classroomId) {
+        $this->classroomId = (int) $classroomId;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getSchoolId() {
+        return $this->schoolId;
+    }
+
+    public function getUserId() {
+        return $this->userId;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function setSchoolId($schoolId) {
+        $this->schoolId = $schoolId;
+    }
+
+    public function setUserId($userId) {
+        $this->userId = $userId;
+    }
+
+
 }

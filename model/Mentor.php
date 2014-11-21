@@ -7,38 +7,46 @@
  */
 
 /**
- * Description of Admin
+ * Description of mentor
  *
  * @author emmett.newman
  */
-class Admin {
+class Mentor {
     private $id;
-    private $schoolId;
     private $userId;
+    private $name;
+    private $relationship;
     
     public function getId() {
         return $this->id;
-    }
-
-    public function getSchoolId() {
-        return $this->schoolId;
     }
 
     public function getUserId() {
         return $this->userId;
     }
 
-    public function setId($id) {
-        $this->id = (int) $id;
+    public function getName() {
+        return $this->name;
     }
 
-    public function setSchoolId($schoolId) {
-        $this->schoolId = $schoolId;
+    public function getRelationship() {
+        return $this->relationship;
+    }
+
+    public function setId($id) {
+        $this->id = (int) $id;
     }
 
     public function setUserId($userId) {
         $this->userId = $userId;
     }
 
+    public function setName($name) {
+        $this->name = $name;
+    }
 
+    public function setRelationship($relationship) {
+        $this->relationship = $relationship;
+    }
+    
 }

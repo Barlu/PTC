@@ -7,16 +7,24 @@
  */
 
 /**
- * Description of Admin
+ * Description of Classroom
  *
  * @author emmett.newman
  */
-class Admin {
+class Classroom {
     private $id;
     private $schoolId;
-    private $userId;
+    private $classroomId;
     
-    public function getId() {
+    public function getClassroomId() {
+        return $this->classroomId;
+    }
+
+    public function setClassroomId($classroomId) {
+        $this->classroomId = (int) $classroomId;
+    }
+
+        public function getId() {
         return $this->id;
     }
 
@@ -24,20 +32,12 @@ class Admin {
         return $this->schoolId;
     }
 
-    public function getUserId() {
-        return $this->userId;
-    }
-
     public function setId($id) {
-        $this->id = (int) $id;
+        $this->id = $id;
     }
 
     public function setSchoolId($schoolId) {
         $this->schoolId = $schoolId;
-    }
-
-    public function setUserId($userId) {
-        $this->userId = $userId;
     }
 
 

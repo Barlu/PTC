@@ -7,37 +7,37 @@
  */
 
 /**
- * Description of Admin
+ * Description of School
  *
  * @author emmett.newman
  */
-class Admin {
+class School {
     private $id;
-    private $schoolId;
-    private $userId;
+    private $name;
+    private $address;
     
     public function getId() {
         return $this->id;
     }
 
-    public function getSchoolId() {
-        return $this->schoolId;
+    public function getName() {
+        return $this->name;
     }
 
-    public function getUserId() {
-        return $this->userId;
+    public function getAddress() {
+        return $this->address;
     }
 
     public function setId($id) {
         $this->id = (int) $id;
     }
 
-    public function setSchoolId($schoolId) {
-        $this->schoolId = $schoolId;
+    public function setName($name) {
+        $this->name = $name;
     }
 
-    public function setUserId($userId) {
-        $this->userId = $userId;
+    public function setAddress($address) {
+        $this->address = $address;
     }
 
 
