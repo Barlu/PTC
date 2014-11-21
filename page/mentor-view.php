@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <br />
 <div style="margin:10px;">
     <a style="color:black;" href="http://localhost/PTConnection/web/index.php?page=home"><button>Home</button></a>
