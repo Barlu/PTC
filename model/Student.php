@@ -14,7 +14,6 @@
 class Student {
     private $id;
     private $schoolId;
-    private $mentorId;
     private $classroomId;
     private $userId;
     private $name;

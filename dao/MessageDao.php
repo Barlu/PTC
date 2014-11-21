@@ -15,9 +15,9 @@ class MessageDao extends Dao{
     public function insert($object) {
         $now = new DateTime;
         $object->setId(null);
+        $object-setDateTime($now->getTimestamp());
         $sql = 'INSERT INTO messages
                 VALUES(:id, :senderId, :receiverId, :title, :message, :dateTime, :status);';
-        
         return $this->execute($sql, $object);
     }
 
@@ -26,7 +26,6 @@ class MessageDao extends Dao{
             UPDATE messages
             SET title = :title, message = :message, status = :status
             WHERE id = :id';
-               
         return $this->execute($sql, $object);
     }
     public function save($object){
@@ -51,29 +50,29 @@ class MessageDao extends Dao{
     }
     
     public function findAllBySenderId($id) {
-        $row = $this->query('
+         $result = [];
+         foreach($this->query('
                 SELECT * 
                 FROM messages
-                WHERE senderId = ' . (int) $id)->fetch();
-        if (!$row) {
-            return null;
-        }
-        $object = new FlightBooking();
-        Mapper::map($object, $row);
-        return $object;
+                WHERE senderId = ' . (int) $id)->fetch() as $row){
+             $message = new Message();
+             Mapper::mapMessage($object, $row);
+             $result[$message->getDateTime()] = $row;
+         }
+        return $result;
     }
     
     public function findAllByReceiverId($id) {
-        $row = $this->query('
+        $result = [];
+         foreach($this->query('
                 SELECT * 
                 FROM messages
-                WHERE receiverId = ' . (int) $id)->fetch();
-        if (!$row) {
-            return null;
-        }
-        $object = new FlightBooking();
-        Mapper::map($object, $row);
-        return $object;
+                WHERE receiverId = ' . (int) $id)->fetch() as $row){
+             $message = new Message();
+             Mapper::mapMessage($object, $row);
+             $result[$message->getDateTime()] = $row;
+         }
+        return $result;
     }
     
     public function delete($id) {

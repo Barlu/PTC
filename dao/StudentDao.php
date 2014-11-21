@@ -13,19 +13,19 @@
  */
 class StundentDao extends Dao {
     public function insert($object) {
-        $now = new DateTime;
         $object->setId(null);
-        $sql = 'INSERT INTO 
-                VALUES();';
+        $object->setStatus('ACTIVE');
+        $sql = 'INSERT INTO student
+                VALUES(:id, :schoolId, :classroomId, :userId, :name, :status);';
         
         return $this->execute($sql, $object);
     }
 
     public function update($object){
         $sql = '
-            UPDATE 
-            SET   
-            WHERE';
+            UPDATE student
+            SET schoolId = :schoolId, classroomId = :classroomId, name = :name
+            WHERE userId = :userId';
                
         return $this->execute($sql, $object);
     }
@@ -40,7 +40,11 @@ class StundentDao extends Dao {
     private function getParams($object) {
         $params = [
             ':id' => $object->getId(null),
-            
+            ':schoolId' => $object->getSchoolId(),
+            ':classroomId' => $object->getClassroomId(),
+            ':name' => $object->getName(),
+            ':userId' => $object->getUserId(),
+            ':status' => $object->getStatus()
         ];
         
         return $params;
@@ -49,24 +53,38 @@ class StundentDao extends Dao {
     public function findById($id) {
         $row = $this->query('
                 SELECT * 
-                FROM 
+                FROM student
                 WHERE id = ' . (int) $id)->fetch();
         if (!$row) {
             return null;
         }
-        $object = new FlightBooking();
-        Mapper::map($object, $row);
+        $object = new Student();
+        Mapper::mapStudent($object, $row);
         return $object;
+    }
+    
+    public function findAllByClassroomId($id) {
+        $results = [];
+        foreach($this->query('
+                SELECT * 
+                FROM student
+                WHERE classroomId = ' . (int) $id) as $row){
+            $student = new Student();
+            Mapper::mapStudent($student, $row);
+            $results[] = $student;
+        }
+        return $results;
     }
     
     public function delete($id) {
         $sql = '
-            UPDATE 
-            SET
+            UPDATE student
+            SET status = :status
             WHERE id = :id';
         $statement = $this->getDb()->prepare($sql);
         $this->executeStatement($statement, array(
-            
+            ':id' => $id,
+            ':status' => 'DELETED'
         ));
         return $statement->rowCount() == 1;
     }

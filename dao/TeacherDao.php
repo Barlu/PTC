@@ -15,7 +15,7 @@ class TeacherDao extends Dao {
     public function insert($object) {
         $object->setId(null);
         $sql = 'INSERT INTO teacher
-                VALUES(:id, :schoolId, :userId, :name, :status);';
+                VALUES(:id, :schoolId, :classroomId, :userId, :name, :status);';
         
         return $this->execute($sql, $object);
     }
@@ -23,7 +23,7 @@ class TeacherDao extends Dao {
     public function update($object){
         $sql = '
             UPDATE teacher
-            SET schoolId = :schoolId, name = :name
+            SET schoolId = :schoolId, classroomId = :classroomId, name = :name, status = :status
             WHERE userId = :userId';
                
         return $this->execute($sql, $object);
@@ -42,6 +42,7 @@ class TeacherDao extends Dao {
             ':schoolId' => $object->getSchoolId(),
             ':userId' => $object->getUserId(),
             ':name' => $object->getName(),
+            ':classroomId' => $object->classroomId(),
             ':status' => $object->getStatus()   
         ];
         
@@ -56,8 +57,8 @@ class TeacherDao extends Dao {
         if (!$row) {
             return null;
         }
-        $object = new FlightBooking();
-        Mapper::map($object, $row);
+        $object = new Teacher();
+        Mapper::mapTeacher($object, $row);
         return $object;
     }
     
@@ -68,7 +69,8 @@ class TeacherDao extends Dao {
             WHERE userId = :userId';
         $statement = $this->getDb()->prepare($sql);
         $this->executeStatement($statement, array(
-            ':userId' => $userId
+            ':userId' => $userId,
+            ':status' => 'DELETED'
         ));
         return $statement->rowCount() == 1;
     }

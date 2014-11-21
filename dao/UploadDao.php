@@ -57,29 +57,29 @@ class UploadDao extends Dao {
     }
 
     public function findAllBySenderId($id) {
-        $row = $this->query('
-                SELECT uploads.id, uploads.senderId, uploads.receiverId, uploads.filePath, uploads.dateTime, uploads.status, comments.message
+        $result = [];
+        foreach($this->query('
+                SELECT uploads.id, uploads.senderId, uploads.receiverId, uploads.filePath, uploads.dateTime, uploads.status, comments.comment
                 FROM uploads LEFT JOIN comments
-                ON uploads.senderId = ' . (int) $id . 'AND uploads.id = comments.uploadId')->fetch();
-        if (!$row) {
-            return null;
+                ON uploads.id = comments.uploadId WHERE uploads.senderId = ' . (int) $id) as $row){
+            $upload = new Upload();
+            Mapper::mapUpload($upload, $row);
+            $result[$upload->getDateTime()] = $upload;
         }
-        $object = new Upload();
-        Mapper::map($object, $row);
-        return $object;
+        return $result;
     }
 
     public function findAllByReceiverId($id) {
-        $row = $this->query('
-                SELECT uploads.id, uploads.senderId, uploads.receiverId, uploads.filePath, uploads.dateTime, uploads.status, comments.message
+        $result = [];
+        foreach($this->query('
+                SELECT uploads.id, uploads.senderId, uploads.receiverId, uploads.filePath, uploads.dateTime, uploads.status, comments.comment
                 FROM uploads LEFT JOIN comments
-                ON uploads.receiverId = ' . (int) $id . 'AND uploads.id = comments.uploadId')->fetch();
-        if (!$row) {
-            return null;
+                ON uploads.id = comments.uploadId WHERE uploads.receiverId = ' . (int) $id) as $row){
+            $upload = new Upload();
+            Mapper::mapUpload($upload, $row);
+            $result[$upload->getDateTime()] = $upload;
         }
-        $object = new FlightBooking();
-        Mapper::map($object, $row);
-        return $object;
+        return $result;
     }
 
     public function delete($id) {

@@ -28,10 +28,36 @@ class Index {
     public function loadClass($name) {
         $classes = array(
             'Utils' => '../util/Utils.php',
+            'Uploader' => '../util/Uploader.php',
             'Error' => '../validation/Error.php',
             'NotFoundException' => '../exception/NotFoundException.php',
             'Flash' => '../flash/Flash.php',
-            'Config' => '../config/Config.php');
+            'Config' => '../config/Config.php',
+            'User' => '../model/User.php',
+            'Upload' => '../model/Upload.php',
+            'Message' => '../model/Message.php',
+            'School' => '../model/School.php',
+            'Student' => '../model/Student.php',
+            'Teacher' => '../model/Teacher.php',
+            'Mentor' => '../model/Mentor.php',
+            'LogIn' => '../model/LogIn.php',
+            'Admin' => '../model/Admin.php',
+            'Classroom' => '../model/Classroom.php',
+            'Contact' => '../model/Contact.php',
+            'Mapper' => '../mapping/Mapper.php',
+            'Dao' => '../dao/Dao.php',
+            'AdminDao' => '../dao/AdminDao.php',
+            'ClassroomDao' => '../dao/ClassroomDao.php',
+            'CommentDao' => '../dao/CommentDao.php',
+            'ContactDao' => '../dao/ContactDao.php',
+            'LogInDao' => '../dao/LogInDao.php',
+            'MentorDao' => '../dao/MentorDao.php',
+            'MessageDao' => '../dao/MessageDao.php',
+            'SchoolDao' => '../dao/SchoolDao.php',
+            'StudentDao' => '../dao/StudentDao.php',
+            'TeacherDao' => '../dao/TeacherDao.php',
+            'UploadDao' => '../dao/UploadDao.php',
+            );
         if (!array_key_exists($name, $classes)) {
             die('Class "' . $name . '" not found.');
         }

@@ -15,6 +15,7 @@ class Admin {
     private $id;
     private $schoolId;
     private $userId;
+    private $name;
     
     public function getId() {
         return $this->id;
@@ -28,8 +29,12 @@ class Admin {
         return $this->userId;
     }
 
+    public function getName() {
+        return $this->name;
+    }
+
     public function setId($id) {
-        $this->id = (int) $id;
+        $this->id = $id;
     }
 
     public function setSchoolId($schoolId) {
@@ -40,5 +45,8 @@ class Admin {
         $this->userId = $userId;
     }
 
+    public function setName($name) {
+        $this->name = $name;
+    }
 
 }

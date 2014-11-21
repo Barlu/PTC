@@ -19,7 +19,7 @@ if ($returnedFilePath) {
         'receiverId' => 4,
         'title' => 'HelloWorld',
         'filePath' => $returnedFilePath,
-        'comment' => 'Please work'
+//        'comment' => 'Please work'
     ];
 
     $upload = Mapper::mapUpload($upload, $data);
@@ -34,5 +34,8 @@ if ($returnedFilePath) {
         $uploadDao = new UploadDao();
         $uploadDao->save($upload);
     }
+    
+    $row = $uploadDao->findAllByReceiverId(4);
+
     echo $returnedFilePath . " Uploaded <br />";
 }

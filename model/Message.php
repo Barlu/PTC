@@ -15,6 +15,7 @@ class Message {
     private $id;
     private $senderId;
     private $receiverId;
+    private $title;
     private $message;
     private $dateTime;
     private $status;

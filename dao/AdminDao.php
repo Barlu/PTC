@@ -7,24 +7,23 @@
  */
 
 /**
- * Description of MentorDao
+ * Description of AdminDao
  *
  * @author emmett.newman
  */
-class MentorDao extends Dao{
+class AdminDao {
     public function insert($object) {
-        $now = new DateTime;
         $object->setId(null);
-        $sql = 'INSERT INTO mentor
-                VALUES(:id, :userId, :name, :relationship);';
+        $sql = 'INSERT INTO admin
+                VALUES(:id, :schoolId, :userId, :name);';
         
         return $this->execute($sql, $object);
     }
 
     public function update($object){
         $sql = '
-            UPDATE mentor
-            SET name = :name, relationship = :relationship
+            UPDATE admin
+            SET schoolId = :schoolId, name = :name
             WHERE userId = :userId';
                
         return $this->execute($sql, $object);
@@ -39,36 +38,36 @@ class MentorDao extends Dao{
 
     private function getParams($object) {
         $params = [
-            ':id' => $object->getId(null),
+            ':id' => $object->getId(),
+            ':schoolId' => $object->getSchoolId(),
             ':userId' => $object->getUserId(),
-            ':name' => $object->getName(),
-            ':relationship' => $object->getRelationship()
+            ':name' => $object->getName()
         ];
         
         return $params;
     }
     
-    public function findById($id) {
+    public function findById($userId) {
         $row = $this->query('
                 SELECT * 
-                FROM mentor
-                WHERE id = ' . (int) $id)->fetch();
+                FROM teacher
+                WHERE userId = ' . (int) $userId)->fetch();
         if (!$row) {
             return null;
         }
-        $object = new Mentor();
-        Mapper::mapMentor($object, $row);
+        $object = new Admin();
+        Mapper::mapAdmin($object, $row);
         return $object;
     }
     
-    public function delete($id) {
+    public function delete($userId) {
         $sql = '
-            DELETE *
-            FROM mentor
-            WHERE id = :id';
+            DELETE all
+            FROM admin
+            WHERE userId = :userId';
         $statement = $this->getDb()->prepare($sql);
         $this->executeStatement($statement, array(
-            ':id' => $id,
+            ':userId' => $userId,
         ));
         return $statement->rowCount() == 1;
     }

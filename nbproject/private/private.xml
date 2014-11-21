@@ -5,16 +5,12 @@
         <group>
             <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/web/index.php</file>
             <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/dao/CommentDao.php</file>
-            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/dao/Dao.php</file>
             <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/dao/UploadDao.php</file>
-            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/config/config.ini</file>
-            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/dao/LogInDao.php</file>
             <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/mapping/Mapper.php</file>
-            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/model/Upload.php</file>
+            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/page/home-view.php</file>
             <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/dao/MessageDao.php</file>
+            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/dao/TeacherDao.php</file>
             <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/page/uploadResize.php</file>
-            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/config/Config.php</file>
-            <file>file:/D:/Users/emmett.newman/Documents/NetBeansProjects/PTConnection/page/500.php</file>
         </group>
     </open-files>
 </project-private>
